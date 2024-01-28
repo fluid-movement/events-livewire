@@ -1,5 +1,9 @@
 <?php
 
+use App\Livewire\Events\EventCreate;
+use App\Livewire\Events\EventEdit;
+use App\Livewire\Events\EventIndex;
+use App\Livewire\Events\EventView;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +26,14 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get('events', EventIndex::class)
+    ->name('events.index');
+Route::get('events/{event}', EventView::class)
+    ->name('events.view');
+Route::get('events/{event}/edit', EventEdit::class)
+    ->name('events.edit');
+Route::get('events/create', EventCreate::class)
+    ->name('events.create');
 
 require __DIR__.'/auth.php';
