@@ -73,8 +73,15 @@ class Event extends Model
         });
     }
 
+    protected function setSlug()
+    {
+        $this->slug = \Str::slug($this->name);
+    }
+
     public function appendYearToSlug()
     {
+        $this->setSlug();
+
         $year = date('Y', $this->start->getTimestamp());
         // Check if the slug already ends with a 4-digit number
         if (preg_match('/-\d{4}$/', $this->slug)) {

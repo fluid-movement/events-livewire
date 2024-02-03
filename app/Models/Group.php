@@ -33,5 +33,18 @@ class Group extends Model
     protected static function booted()
     {
         static::addGlobalScope(new OrderByName());
+
+        static::creating(function ($model) {
+            $model->setSlug();
+        });
+
+        static::updating(function ($model) {
+            $model->setSlug();
+        });
+    }
+
+    protected function setSlug()
+    {
+        $this->slug = \Str::slug($this->name);
     }
 }
