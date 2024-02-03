@@ -4,30 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{ $title ?? config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
     <!-- Scripts -->
+    <wireui:scripts/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans text-gray-900 antialiased">
-    <livewire:layout.navigation/>
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
-
-    <!-- Page Content -->
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<body class="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-200 text-slate-700">
+<livewire:layout.navigation/>
+<div class="mx-auto max-w-6xl">
+    <div class="bg-white bg-opacity-50 px-2 pt-4 pb-6 md:px-4">
         {{ $slot }}
     </div>
-
+    <x-footer/>
+</div>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -13,12 +14,17 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory(50)->create();
+
+        $events = Event::all();
         $groups = Group::all();
-        foreach (range(1, 200) as $i) {
-            $group = $groups->random();
-            User::factory()->create([
-                'group_id' => $group->id,
-            ]);
-        }
+        User::all()->each(function ($user) use ($events, $groups) {
+            $user->events()->attach(
+                $events->random(rand(1, 5))->pluck('id')->toArray()
+            );
+            $user->groups()->attach(
+                $groups->random(rand(1, 2))->pluck('id')->toArray()
+            );
+        });
     }
 }

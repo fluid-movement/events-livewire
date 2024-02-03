@@ -19,7 +19,7 @@ class GroupSeeder extends Seeder
             'Alpenbrise Munich', 'Seattle Rainjammers', 'New York Sheep Meadow Jammers', 'Durham Jammers',
             'Jacksonville Jammers', 'Rome Jammers'];
         foreach ($groups as $name) {
-            Group::factory()->hasUsers(rand(2,6))->hasEvents(rand(1,4))->create([
+            Group::factory()->hasEvents(rand(1,5))->create([
                 'name' => $name,
                 'slug' => \Str::slug($name),
             ]);

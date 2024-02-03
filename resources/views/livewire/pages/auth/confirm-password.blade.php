@@ -6,7 +6,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('components.layouts.app')] class extends Component
 {
     public string $password = '';
 
@@ -44,23 +44,11 @@ new #[Layout('layouts.guest')] class extends Component
 
     <form wire:submit="confirmPassword">
         <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input wire:model="password"
-                          id="password"
-                          class="block mt-1 w-full"
-                          type="password"
-                          name="password"
-                          required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
+        <x-input label="Password" for="password" wire:model="password" type="password" />
         <div class="flex justify-end mt-4">
-            <x-primary-button>
+            <x-button>
                 {{ __('Confirm') }}
-            </x-primary-button>
+            </x-button>
         </div>
     </form>
 </div>

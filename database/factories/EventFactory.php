@@ -28,8 +28,8 @@ class EventFactory extends Factory
             'description' => $this->faker->text,
             'city' => $this->faker->city(),
             'country' => $this->faker->country(),
-            'start' => $start,
-            'end' => $end,
+            'start' => $start->format('Y-m-d'),
+            'end' => $end->format('Y-m-d'),
         ];
     }
 }
