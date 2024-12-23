@@ -15,6 +15,8 @@ class Group extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['link'];
+
     public function events(): HasMany
     {
         return $this->hasMany(Event::class);
@@ -30,6 +32,11 @@ class Group extends Model
         return 'slug';
     }
 
+    public function getLinkAttribute(): string
+    {
+        return route('groups.show', $this->slug);
+    }
+
     protected static function booted()
     {
         static::addGlobalScope(new OrderByName());
@@ -43,7 +50,7 @@ class Group extends Model
         });
     }
 
-    protected function setSlug()
+    protected function setSlug(): void
     {
         $this->slug = \Str::slug($this->name);
     }

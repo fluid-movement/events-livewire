@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Artisan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,8 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Artisan::call('migrate:fresh');
+        Artisan::call('app:import-data');
+        echo Artisan::output();
+
         $this->call([
             GroupSeeder::class,
+            EventSeeder::class,
             UserSeeder::class,
         ]);
     }

@@ -19,7 +19,7 @@ class GroupApiResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'links' => [
-                'web' => route('groups.view', $this),
+                'web' => route('groups.show', $this),
                 'api' => route('api-groups.show', $this),
             ],
             'events' => EventApiResource::collection($this->whenLoaded('events')),
